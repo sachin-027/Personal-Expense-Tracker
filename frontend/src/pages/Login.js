@@ -45,7 +45,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex bg-gray-50">
+    <div className="min-h-screen flex bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
       {/* Left Side - Animated Illustration */}
       <div className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 items-center justify-center p-12 relative overflow-hidden">
         {/* Animated Background Elements */}
@@ -132,7 +132,7 @@ const Login = () => {
       </div>
 
       {/* Right Side - Login Form */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-white">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-8 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
         <div className="w-full max-w-md">
           <h1 className="text-3xl font-bold mb-2 text-gray-800">Welcome Back</h1>
           <p className="text-gray-600 mb-8">Please enter your details to log in</p>

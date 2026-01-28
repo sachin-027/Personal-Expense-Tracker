@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Layout from '../components/Layout';
 import axiosInstance from '../utils/axios';
 import { apiPaths } from '../utils/apiPath';
@@ -6,6 +7,7 @@ import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveCo
 import { Wallet, TrendingUp, TrendingDown, ArrowRight } from 'lucide-react';
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -72,6 +74,9 @@ const Dashboard = () => {
 
   const COLORS = ['#6B46C1', '#EF4444', '#F97316', '#10B981', '#3B82F6', '#F59E0B'];
 
+  // Expense icons - same as in Expense.js
+  const expenseIcons = ['🛍️', '✈️', '💡', '🏦', '🚗', '🍔', '🎬', '🏥', '📚', '🏠', '👕', '⚽'];
+
   return (
     <Layout>
       <div className="space-y-6">
@@ -125,26 +130,30 @@ const Dashboard = () => {
               </button>
             </div>
             <div className="space-y-4">
-              {(recentTransactions || []).slice(0, 5).map((transaction, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-xl">
-                      {transaction.icon || '📦'}
+              {recentTransactions && recentTransactions.length > 0 
+                ? recentTransactions.slice(0, 4).map((transaction, index) => (
+                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-xl">
+                          {transaction.icon || '📦'}
+                        </div>
+                        <div>
+                          <p className="font-medium">{transaction.category}</p>
+                          <p className="text-sm text-gray-500">
+                            {new Date(transaction.date).toLocaleDateString('en-US', { 
+                              day: 'numeric', 
+                              month: 'short', 
+                              year: 'numeric' 
+                            })}
+                          </p>
+                        </div>
+                      </div>
+                      <p className="text-red-500 font-semibold">- ₹{transaction.amount}</p>
                     </div>
-                    <div>
-                      <p className="font-medium">{transaction.category}</p>
-                      <p className="text-sm text-gray-500">
-                        {new Date(transaction.date).toLocaleDateString('en-US', { 
-                          day: 'numeric', 
-                          month: 'short', 
-                          year: 'numeric' 
-                        })}
-                      </p>
-                    </div>
-                  </div>
-                  <p className="text-red-500 font-semibold">- ₹{transaction.amount}</p>
-                </div>
-              ))}
+                  ))
+                : (
+                  <p className="text-gray-500 text-center py-4">No recent transactions</p>
+                )}
             </div>
           </div>
 
@@ -192,24 +201,31 @@ const Dashboard = () => {
           <div className="bg-white rounded-2xl p-6 shadow-sm">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-xl font-bold">Expenses</h2>
-              <button className="text-purple-600 hover:text-purple-700 flex items-center gap-1 text-sm font-medium">
+              <button 
+                onClick={() => navigate('/expense')}
+                className="text-purple-600 hover:text-purple-700 flex items-center gap-1 text-sm font-medium transition-colors"
+              >
                 See All <ArrowRight size={16} />
               </button>
             </div>
             <div className="space-y-4">
-              {expensesData.slice(0, 4).map((expense, index) => (
-                <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-xl">
-                      {['🛍️', '✈️', '💡', '🏦'][index] || '📦'}
+              {last30DaysExpenses && last30DaysExpenses.length > 0
+                ? last30DaysExpenses.slice(0, 4).map((expense, index) => (
+                    <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
+                      <div className="flex items-center gap-3">
+                        <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-xl">
+                          {expense.icon || '📦'}
+                        </div>
+                        <div>
+                          <p className="font-medium">{expense.category}</p>
+                        </div>
+                      </div>
+                      <p className="text-red-500 font-semibold">- ₹{expense.amount}</p>
                     </div>
-                    <div>
-                      <p className="font-medium">{expense.name}</p>
-                    </div>
-                  </div>
-                  <p className="text-red-500 font-semibold">- ₹{expense.amount}</p>
-                </div>
-              ))}
+                  ))
+                : (
+                  <p className="text-gray-500 text-center py-4">No expenses</p>
+                )}
             </div>
           </div>
 
@@ -261,12 +277,15 @@ const Dashboard = () => {
           <div className="bg-white rounded-2xl p-6 shadow-sm">
             <div className="flex justify-between items-center mb-6">
               <h2 className="text-xl font-bold">Income</h2>
-              <button className="text-purple-600 hover:text-purple-700 flex items-center gap-1 text-sm font-medium">
+              <button 
+                onClick={() => navigate('/income')}
+                className="text-purple-600 hover:text-purple-700 flex items-center gap-1 text-sm font-medium transition-colors"
+              >
                 See All <ArrowRight size={16} />
               </button>
             </div>
             <div className="space-y-4">
-              {incomeData.slice(0, 5).map((income, index) => (
+              {incomeData.slice(0, 4).map((income, index) => (
                 <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-xl">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-xl">
