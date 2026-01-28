@@ -39,3 +39,260 @@ code {
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
+
+/* Login Page Animations */
+@keyframes rotate-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes bulb-glow {
+  0%, 100% {
+    filter: brightness(1) drop-shadow(0 0 20px rgba(253, 224, 71, 0.5));
+  }
+  50% {
+    filter: brightness(1.3) drop-shadow(0 0 40px rgba(253, 224, 71, 0.8));
+  }
+}
+
+@keyframes ray-pulse {
+  0%, 100% {
+    opacity: 0.8;
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scaleX(1.5);
+  }
+}
+
+@keyframes person-interact {
+  0%, 100% {
+    transform: translate(-50%, 0) translateY(0px);
+  }
+  50% {
+    transform: translate(-50%, 0) translateY(-8px);
+  }
+}
+
+@keyframes arm-reach {
+  0%, 100% {
+    transform: rotate(-45deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-55deg) translateY(-4px);
+  }
+}
+
+@keyframes coin-bob {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes coin-float-1 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-15px) translateX(5px) rotate(90deg);
+  }
+  50% {
+    transform: translateY(-20px) translateX(0px) rotate(180deg);
+  }
+  75% {
+    transform: translateY(-15px) translateX(-5px) rotate(270deg);
+  }
+}
+
+@keyframes coin-float-2 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-12px) translateX(-6px) rotate(-90deg);
+  }
+  50% {
+    transform: translateY(-18px) translateX(0px) rotate(-180deg);
+  }
+  75% {
+    transform: translateY(-12px) translateX(6px) rotate(-270deg);
+  }
+}
+
+@keyframes coin-float-3 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-10px) translateX(5px) scale(1.1);
+  }
+}
+
+@keyframes coin-to-bulb-1 {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-40px) translateX(20px) scale(0.8);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-80px) translateX(30px) scale(0.3);
+    opacity: 0;
+  }
+}
+
+@keyframes coin-to-bulb-2 {
+  0% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-35px) translateX(-15px) scale(0.7);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(-70px) translateX(-25px) scale(0.2);
+    opacity: 0;
+  }
+}
+
+@keyframes float-1 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-20px) translateX(10px);
+    opacity: 0.8;
+  }
+}
+
+@keyframes float-2 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(-25px) translateX(-10px);
+    opacity: 1;
+  }
+}
+
+@keyframes float-3 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateY(-18px) translateX(8px);
+    opacity: 0.7;
+  }
+}
+
+@keyframes float-4 {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(-22px) translateX(-12px);
+    opacity: 0.9;
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation Classes */
+.animate-rotate-slow {
+  animation: rotate-slow 60s linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s ease-in-out infinite;
+}
+
+.animate-bulb-glow {
+  animation: bulb-glow 2s ease-in-out infinite;
+}
+
+.animate-ray-pulse {
+  animation: ray-pulse 1.5s ease-in-out infinite;
+}
+
+.animate-person-interact {
+  animation: person-interact 3s ease-in-out infinite;
+}
+
+.animate-arm-reach {
+  animation: arm-reach 2s ease-in-out infinite;
+}
+
+.animate-coin-bob {
+  animation: coin-bob 2s ease-in-out infinite;
+}
+
+.animate-coin-float-1 {
+  animation: coin-float-1 6s ease-in-out infinite;
+}
+
+.animate-coin-float-2 {
+  animation: coin-float-2 7s ease-in-out infinite;
+}
+
+.animate-coin-float-3 {
+  animation: coin-float-3 5s ease-in-out infinite;
+}
+
+.animate-coin-to-bulb-1 {
+  animation: coin-to-bulb-1 3s ease-in-out infinite;
+}
+
+.animate-coin-to-bulb-2 {
+  animation: coin-to-bulb-2 3.5s ease-in-out infinite;
+}
+
+.animate-float-1 {
+  animation: float-1 4s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: float-2 5s ease-in-out infinite;
+}
+
+.animate-float-3 {
+  animation: float-3 4.5s ease-in-out infinite;
+}
+
+.animate-float-4 {
+  animation: float-4 5.5s ease-in-out infinite;
+}
+
+.animate-fade-in {
+  animation: fade-in 1.5s ease-out;
+}
