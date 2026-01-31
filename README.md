@@ -13,8 +13,24 @@ A full-stack expense tracking application built with React and Node.js that help
 - 📥 Excel Export for Reports
 - 🎨 Modern UI with Tailwind CSS
 
-## login
+## login page
 ![alt text](frontend/public/screenshots/image.png)
+![alt text](frontend/public/screenshots/image-1.png)
+
+## Dashboard
+![alt text](frontend/public/screenshots/image-2.png)
+![alt text](frontend/public/screenshots/image-3.png)
+## Income
+
+![alt text](frontend/public/screenshots/image-4.png)
+### Add Income
+![alt text](frontend/public/screenshots/image-5.png)
+
+## Expanses
+![alt text](frontend/public/screenshots/image-6.png)
+### Add Expanse
+![alt text](frontend/public/screenshots/image-7.png)
+
 ## Tech Stack
 
 ### Frontend
